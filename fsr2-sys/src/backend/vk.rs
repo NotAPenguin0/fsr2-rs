@@ -68,8 +68,8 @@ impl VkBuffer {
 pub type VkFormat = i32;
 pub type VkImageLayout = i32;
 
-pub type VoidFunctionPtr = extern fn();
-pub type VkGetDeviceProcAddrFunc = extern fn(VkDevice, *const c_char) -> VoidFunctionPtr;
+pub type VoidFunctionPtr = Option<unsafe extern "system" fn()>;
+pub type VkGetDeviceProcAddrFunc = unsafe extern "system" fn(VkDevice, *const c_char) -> VoidFunctionPtr;
 
 extern "C" {
     pub fn ffxFsr2GetScratchMemorySizeVK(device: VkPhysicalDevice) -> usize;
