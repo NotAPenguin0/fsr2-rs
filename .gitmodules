@@ -1,0 +1,3 @@
+[submodule "fsr2-sys/src/vendor/fsr2"]
+	path = fsr2-sys/src/vendor/fsr2
+	url = https://github.com/NotAPenguin0/FidelityFX-FSR2
