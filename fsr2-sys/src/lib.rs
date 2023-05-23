@@ -47,7 +47,7 @@ bitflags! {
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct FfxFsr2ContextDescription {
-    pub flags: u32,
+    pub flags: FfxFsr2InitializationFlagBits,
     pub max_render_size: FfxDimensions2D,
     pub display_size: FfxDimensions2D,
     pub callbacks: FfxFsr2Interface,
