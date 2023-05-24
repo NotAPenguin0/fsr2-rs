@@ -56,6 +56,8 @@ pub struct FfxFsr2ContextDescription {
     pub fp_message: FfxFsr2Message,
 }
 
+unsafe impl Send for FfxFsr2ContextDescription {}
+
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct FfxFsr2DispatchDescription {
