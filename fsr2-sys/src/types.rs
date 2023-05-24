@@ -1,5 +1,5 @@
+use bitflags::{bitflags, Flags};
 use std::ffi::c_void;
-use bitflags::bitflags;
 use widestring::WideChar;
 
 #[allow(nonstandard_style)]
@@ -183,6 +183,25 @@ pub struct FfxResource {
     pub state: FfxResourceState,
     pub is_depth: bool,
     pub descriptor_data: u64,
+}
+
+impl FfxResource {
+    const NULL: Self = FfxResource {
+        resource: std::ptr::null_mut(),
+        name: [0; 64],
+        description: FfxResourceDescription {
+            ty: FfxResourceType::Buffer,
+            surface_format: FfxSurfaceFormat::Unknown,
+            width: 0,
+            height: 0,
+            depth: 0,
+            mip_count: 0,
+            flags: FfxResourceFlags::NONE,
+        },
+        state: FfxResourceState::from_bits_retain(0),
+        is_depth: false,
+        descriptor_data: 0,
+    };
 }
 
 #[derive(Copy, Clone, Debug)]
