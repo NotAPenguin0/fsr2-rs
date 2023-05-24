@@ -138,7 +138,7 @@ extern "C" {
         quality_mode: FfxFsr2QualityMode,
     ) -> FfxErrorCode;
 
-    pub fn ffxFsr2GetJitterPhaseCount(render_width: u32, render_height: u32) -> i32;
+    pub fn ffxFsr2GetJitterPhaseCount(render_width: u32, display_width: u32) -> i32;
 
     pub fn ffxFsr2GetJitterOffset(
         out_x: *mut f32,
