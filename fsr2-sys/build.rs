@@ -62,6 +62,7 @@ fn build_fsr2_lib(api: &str) -> Result<()> {
     let output = Command::new("cmake")
         .arg("--build")
         .arg(format!("{}", api_build_dir.as_os_str().to_str().unwrap()))
+        .arg("--config Release")
         .output()?;
     output_success(output)
 }
@@ -108,13 +109,13 @@ fn main() -> Result<()> {
 
     let dir = root_out_dir();
     println!("cargo:rustc-link-search={}", dir.as_os_str().to_str().unwrap());
-    println!("cargo:rustc-link-lib=./ffx_fsr2_api_x64d");
+    println!("cargo:rustc-link-lib=./ffx_fsr2_api_x64");
 
     #[cfg(feature = "vk")]
-    println!("cargo:rustc-link-lib=./ffx_fsr2_api_vk_x64d");
+    println!("cargo:rustc-link-lib=./ffx_fsr2_api_vk_x64");
 
     #[cfg(feature = "dx12")]
-    println!("cargo:rustc-link-lib=./ffx_fsr2_api_dx12_x64d");
+    println!("cargo:rustc-link-lib=./ffx_fsr2_api_dx12_x64");
 
     Ok(())
 }
