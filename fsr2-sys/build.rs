@@ -19,27 +19,6 @@ fn output_success(output: Output) -> Result<()> {
     }
 }
 
-/// Checks out submodules for FSR2
-fn checkout() -> Result<()> {
-    let output = Command::new("git")
-        .arg("submodule")
-        .arg("update")
-        .arg("--init")
-        .arg("--recursive")
-        .output()?;
-    output_success(output)?;
-
-    let output = Command::new("git")
-        .current_dir(FSR2_SOURCE_DIR)
-        .arg("submodule")
-        .arg("update")
-        .arg("--init")
-        .arg("--recursive")
-        .output()?;
-
-    output_success(output)
-}
-
 fn build_dir(api: &str) -> PathBuf {
     let out_dir = env::var("OUT_DIR").unwrap();
     Path::new(&out_dir).join("fsr2-build").join(api)
@@ -115,7 +94,6 @@ fn main() -> Result<()> {
     #[cfg(feature = "dx12")]
     const API: &'static str = "DX12";
 
-    checkout()?;
     initialize_api_build_dir(API)?;
     build_fsr2_lib(API)?;
     println!("FSR2 build success");
