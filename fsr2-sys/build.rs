@@ -14,6 +14,7 @@ fn output_success(output: Output) -> Result<()> {
     if output.status.success() {
         Ok(())
     } else {
+        eprintln!("Build error: {}", String::from_utf8(output.stdout).unwrap());
         Err(anyhow!("{}", String::from_utf8(output.stderr).unwrap()))
     }
 }
@@ -68,14 +69,18 @@ fn build_fsr2_lib(api: &str) -> Result<()> {
 }
 
 fn copy_dir_contents<P: AsRef<Path>, Q: AsRef<Path>>(src: P, dst: Q) -> Result<()> {
-    fs_extra::dir::copy(&src, &dst, &CopyOptions {
+    println!("In copy");
+    let err = fs_extra::dir::copy(&src, &dst, &CopyOptions {
         overwrite: true,
         skip_exist: false,
         buffer_size: 64000,
         copy_inside: true,
         content_only: true,
         depth: 0,
-    })?;
+    });
+    if let Err(e) = err {
+        println!("Copy error: {e}");
+    }
     Ok(())
 }
 
@@ -105,6 +110,7 @@ fn main() -> Result<()> {
     checkout()?;
     initialize_api_build_dir(API)?;
     build_fsr2_lib(API)?;
+    println!("FSR2 build success");
     copy_build_artifacts()?;
 
     let dir = root_out_dir();
