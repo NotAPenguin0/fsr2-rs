@@ -1,6 +1,6 @@
 [package]
 name = "fsr2-sys"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["NotAPenguin"]
 description = "Unsafe FFI bindings for AMD's FidelityFX Super Resolution 2 library (FSR2)"
@@ -8,7 +8,7 @@ keywords = ["ffi", "fsr2", "graphics"]
 categories = ["external-ffi-bindings"]
 license = "MIT/Apache-2.0"
 homepage = "https://github.com/NotAPenguin0/fsr2-rs"
-repository = "https://github.com/grovesNL/fsr2-rs"
+repository = "https://github.com/NotAPenguin0/fsr2-rs"
 readme = "../README.md"
 
 [dependencies]
