@@ -22,6 +22,14 @@ fn output_success(output: Output) -> Result<()> {
 /// Checks out submodules for FSR2
 fn checkout() -> Result<()> {
     let output = Command::new("git")
+        .arg("submodule")
+        .arg("update")
+        .arg("--init")
+        .arg("--recursive")
+        .output()?;
+    output_success(output)?;
+
+    let output = Command::new("git")
         .current_dir(FSR2_SOURCE_DIR)
         .arg("submodule")
         .arg("update")
