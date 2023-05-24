@@ -121,24 +121,33 @@ pub struct VkPhysicalDeviceMemoryProperties {
 
 pub type VoidFunctionPtr = Option<unsafe extern "system" fn()>;
 
-pub type VkEnumerateDeviceExtensionPropertiesFunc = unsafe extern "system" fn(VkPhysicalDevice, *const c_char, *mut u32, *mut VkExtensionProperties);
+pub type VkEnumerateDeviceExtensionPropertiesFunc = unsafe extern "system" fn(
+    VkPhysicalDevice,
+    *const c_char,
+    *mut u32,
+    *mut VkExtensionProperties,
+);
 
 pub type VkGetDeviceProcAddrFunc =
     unsafe extern "system" fn(VkDevice, *const c_char) -> VoidFunctionPtr;
 
-pub type VkGetPhysicalDeviceMemoryPropertiesFunc = unsafe extern "system" fn(VkPhysicalDevice, *mut VkPhysicalDeviceMemoryProperties);
+pub type VkGetPhysicalDeviceMemoryPropertiesFunc =
+    unsafe extern "system" fn(VkPhysicalDevice, *mut VkPhysicalDeviceMemoryProperties);
 
 /// fn(VkPhysicalDevice, *mut VkPhysicalDeviceProperties)
 /// This type is not fully spelled out to avoid depending on ash or another vulkan loader for the vulkan types
-pub type VkGetPhysicalDevicePropertiesFunc = unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
+pub type VkGetPhysicalDevicePropertiesFunc =
+    unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
 
 /// fn(VkPhysicalDevice, *mut VkPhysicalDeviceProperties2)
 /// This type is not fully spelled out to avoid depending on ash or another vulkan loader for the vulkan types
-pub type VkGetPhysicalDeviceProperties2Func = unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
+pub type VkGetPhysicalDeviceProperties2Func =
+    unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
 
 /// fn(VkPhysicalDevice, *mut VkPhysicalDeviceFeatures2)
 /// This type is not fully spelled out to avoid depending on ash or another vulkan loader for the vulkan types
-pub type VkGetPhysicalDeviceFeatures2Func = unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
+pub type VkGetPhysicalDeviceFeatures2Func =
+    unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -152,7 +161,10 @@ pub struct FfxFsr2InstanceFunctionPointerTableVk {
 }
 
 extern "C" {
-    pub fn ffxFsr2GetScratchMemorySizeVK(device: VkPhysicalDevice, fp_table: *const FfxFsr2InstanceFunctionPointerTableVk) -> usize;
+    pub fn ffxFsr2GetScratchMemorySizeVK(
+        device: VkPhysicalDevice,
+        fp_table: *const FfxFsr2InstanceFunctionPointerTableVk,
+    ) -> usize;
 
     pub fn ffxFsr2GetInterfaceVK(
         interface: *mut FfxFsr2Interface,
@@ -168,6 +180,7 @@ extern "C" {
 
     /// Name may be null
     pub fn ffxGetTextureResourceVK(
+        context: *mut FfxFsr2Context,
         image: VkImage,
         view: VkImageView,
         width: u32,
@@ -179,6 +192,7 @@ extern "C" {
 
     /// Name may be null
     pub fn ffxGetBufferResourceVK(
+        context: *mut FfxFsr2Context,
         buffer: VkBuffer,
         size: u32,
         name: *const wchar_t,
