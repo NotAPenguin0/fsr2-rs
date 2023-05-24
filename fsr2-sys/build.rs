@@ -44,6 +44,7 @@ fn initialize_api_build_dir(api: &str) -> Result<()> {
     std::fs::create_dir_all(&api_build_dir)?;
     let output = Command::new("cmake")
         .arg("-A x64")
+        .arg("-DCMAKE_BUILD_TYPE=Release")
         .arg(format!("-DGFX_API={api}"))
         .arg(format!("-S {FSR2_SOURCE_DIR}"))
         .arg(format!(
