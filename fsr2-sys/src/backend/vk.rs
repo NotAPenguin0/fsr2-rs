@@ -139,8 +139,11 @@ pub type VkGetPhysicalDeviceProperties2Func = unsafe extern "system" fn(VkPhysic
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct FfxFsr2InstanceFunctionPointerTableVk {
-
-    fp_get_device_proc_addr: VkGetDeviceProcAddrFunc,
+    pub fp_enumerate_device_extension_properties: VkEnumerateDeviceExtensionPropertiesFunc,
+    pub fp_get_device_proc_addr: VkGetDeviceProcAddrFunc,
+    pub fp_get_physical_device_memory_properties: VkGetPhysicalDeviceMemoryPropertiesFunc,
+    pub fp_get_physical_device_properties: VkGetPhysicalDevicePropertiesFunc,
+    pub fp_get_physical_device_properties2: VkGetPhysicalDeviceProperties2Func,
 }
 
 extern "C" {
