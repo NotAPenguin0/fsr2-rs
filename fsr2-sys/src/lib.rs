@@ -30,6 +30,7 @@ pub enum FfxFsr2QualityMode {
 }
 
 bitflags! {
+    #[derive(Copy, Clone, Debug)]
     #[repr(transparent)]
     pub struct FfxFsr2InitializationFlagBits: i32 {
         const ENABLE_HIGH_DYNAMIC_RANGE = 1 << 0;
