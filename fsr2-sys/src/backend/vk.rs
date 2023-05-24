@@ -136,6 +136,10 @@ pub type VkGetPhysicalDevicePropertiesFunc = unsafe extern "system" fn(VkPhysica
 /// This type is not fully spelled out to avoid depending on ash or another vulkan loader for the vulkan types
 pub type VkGetPhysicalDeviceProperties2Func = unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
 
+/// fn(VkPhysicalDevice, *mut VkPhysicalDeviceFeatures2)
+/// This type is not fully spelled out to avoid depending on ash or another vulkan loader for the vulkan types
+pub type VkGetPhysicalDeviceFeatures2Func = unsafe extern "system" fn(VkPhysicalDevice, *mut c_void);
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct FfxFsr2InstanceFunctionPointerTableVk {
@@ -144,6 +148,7 @@ pub struct FfxFsr2InstanceFunctionPointerTableVk {
     pub fp_get_physical_device_memory_properties: VkGetPhysicalDeviceMemoryPropertiesFunc,
     pub fp_get_physical_device_properties: VkGetPhysicalDevicePropertiesFunc,
     pub fp_get_physical_device_properties2: VkGetPhysicalDeviceProperties2Func,
+    pub fp_get_physical_device_features2: VkGetPhysicalDeviceFeatures2Func,
 }
 
 extern "C" {
