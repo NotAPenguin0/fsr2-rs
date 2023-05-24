@@ -1,6 +1,6 @@
 [package]
 name = "fsr2-sys"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 authors = ["NotAPenguin"]
 description = "Unsafe FFI bindings for AMD's FidelityFX Super Resolution 2 library (FSR2)"
