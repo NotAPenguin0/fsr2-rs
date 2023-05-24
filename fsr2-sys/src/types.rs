@@ -186,7 +186,7 @@ pub struct FfxResource {
 }
 
 impl FfxResource {
-    const NULL: Self = FfxResource {
+    pub const NULL: Self = FfxResource {
         resource: std::ptr::null_mut(),
         name: [0; 64],
         description: FfxResourceDescription {
