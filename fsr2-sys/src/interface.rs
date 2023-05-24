@@ -41,7 +41,7 @@ pub type FfxFsr2CreatePipelineFunc = extern fn(*mut FfxFsr2Interface, FfxFsr2Pas
 pub type FfxFsr2DestroyPipelineFunc = extern fn(*mut FfxFsr2Interface, *mut FfxPipelineState) -> FfxErrorCode;
 pub type FfxFsr2ScheduleGpuJobFunc = extern fn(*mut FfxFsr2Interface, *const FfxGpuJobDescription) -> FfxErrorCode;
 pub type FfxFsr2ExecuteGpuJobsFunc = extern fn(*mut FfxFsr2Interface, FfxCommandList) -> FfxErrorCode;
-pub type FfxFsr2Message = extern fn(FfxFsr2MsgType, *const wchar_t);
+pub type FfxFsr2Message = extern "system" fn(FfxFsr2MsgType, *const wchar_t);
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]

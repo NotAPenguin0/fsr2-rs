@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Eq, PartialEq)]
 #[repr(i32)]
 pub enum FfxErrorCode {
     Ok = 0,
